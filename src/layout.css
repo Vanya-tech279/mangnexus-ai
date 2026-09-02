@@ -1,0 +1,988 @@
+/* ============ App shell ============ */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 32px 40px 48px;
+  min-height: 100vh;
+}
+
+/* ============ Sidebar ============ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  padding: 22px 16px;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 10px 26px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 18px;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  background:
+    linear-gradient(155deg, var(--accent-soft) 0%, var(--accent) 55%, #8a6a24 100%);
+  position: relative;
+}
+
+.brand-mark::after {
+  /* a simple stylized contour/peak mark, kept abstract rather than a literal icon */
+  content: '';
+  position: absolute;
+  inset: 9px;
+  border-left: 2px solid rgba(15, 30, 24, 0.55);
+  border-bottom: 2px solid rgba(15, 30, 24, 0.55);
+  transform: rotate(45deg);
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.brand-tagline {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+  letter-spacing: 0.02em;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-item:hover {
+  background: var(--bg-panel);
+  color: var(--text-primary);
+}
+
+.nav-item-active {
+  background: var(--accent-wash);
+  color: var(--accent-soft);
+  position: relative;
+}
+
+.nav-item-active::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.sidebar-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 10px 6px;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 12.5px;
+}
+
+.status-dot {
+  color: var(--status-low);
+}
+
+/* ============ Header ============ */
+
+.app-header {
+  margin-bottom: 28px;
+}
+
+.header-title {
+  font-size: 22px;
+}
+
+.header-subtitle {
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  margin-top: 4px;
+}
+
+/* ============ Placeholder (temporary, removed as each page is built) ============ */
+
+.page-placeholder {
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 48px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ============ Stat card ============ */
+
+.stat-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+}
+
+.stat-card-icon {
+  color: var(--accent-soft);
+  margin-bottom: 10px;
+}
+
+.stat-card-label {
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.stat-card-value {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.stat-card-hint {
+  color: var(--text-tertiary);
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.stat-card-low .stat-card-icon { color: var(--status-low); }
+.stat-card-medium .stat-card-icon { color: var(--status-medium); }
+.stat-card-high .stat-card-icon { color: var(--status-high); }
+
+/* ============ Dashboard: stat grid ============ */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1100px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============ Dashboard: weather alert banner ============ */
+
+.alert-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--status-medium-wash);
+  border: 1px solid rgba(193, 146, 47, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  color: var(--accent-soft);
+  margin-bottom: 20px;
+}
+
+.alert-banner svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.alert-banner-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.alert-banner-message {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+/* ============ Dashboard: two-column chart grid ============ */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1100px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  margin-bottom: 20px;
+}
+
+.dashboard-grid .panel {
+  margin-bottom: 0;
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+/* Recharts tooltip, restyled to match the dark theme */
+.chart-tooltip {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 12.5px;
+  color: var(--text-primary);
+}
+
+.chart-tooltip-label {
+  color: var(--text-tertiary);
+  font-size: 11.5px;
+  margin-bottom: 4px;
+}
+
+.chart-tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-tooltip-row strong {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+.chart-tooltip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ============ Dashboard: zone breakdown legend ============ */
+
+.zone-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.zone-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.zone-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.zone-legend-label {
+  color: var(--text-secondary);
+}
+
+.zone-legend-value {
+  margin-left: auto;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ============ Dashboard: recent AI insights ============ */
+
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.insight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 4px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.insight-item:first-child {
+  border-top: none;
+}
+
+.insight-tag {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+  margin-top: 1px;
+}
+
+.insight-tag-zone {
+  background: var(--status-low-wash);
+  color: var(--status-low);
+}
+
+.insight-tag-risk {
+  background: var(--status-high-wash);
+  color: var(--status-high);
+}
+
+.insight-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.insight-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.insight-summary {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+.insight-confidence {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent-soft);
+  white-space: nowrap;
+}
+
+/* ============ Zone Analysis: info note ============ */
+
+.info-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.info-note svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--accent-soft);
+}
+
+/* ============ Zone Analysis: panel title meta ============ */
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-title-meta {
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+}
+
+/* ============ Zone Analysis: select area grid ============ */
+
+.zone-select-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.zone-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  text-align: left;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.zone-card:hover {
+  border-color: var(--border-strong);
+}
+
+.zone-card-active {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+}
+
+.zone-card-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-panel);
+  color: var(--accent-soft);
+}
+
+.zone-card-name {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.zone-card-region {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+/* ============ Zone Analysis: parameter list ============ */
+
+.param-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.param-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 34px;
+  align-items: center;
+  gap: 14px;
+}
+
+.param-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.param-bar-track {
+  height: 6px;
+  border-radius: 4px;
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.param-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
+}
+
+.param-value {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+  .param-row {
+    grid-template-columns: 140px 1fr 30px;
+  }
+}
+
+/* ============ Zone Analysis: analyse button ============ */
+
+.analyse-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #16130a;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 11px 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.analyse-button:hover:not(:disabled) {
+  background: var(--accent-soft);
+}
+
+.analyse-button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.spin-icon {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============ Zone Analysis: analysing state ============ */
+
+.analysing-panel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--accent-soft);
+}
+
+.analysing-panel-error {
+  color: var(--status-high);
+  background: var(--status-high-wash);
+}
+
+.analysing-panel-error .analysing-title {
+  color: var(--status-high);
+}
+
+.analysing-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.analysing-subtitle {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+
+/* ============ Zone Analysis: result header ============ */
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.result-header-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-header-eyebrow {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.result-header-level {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.result-header-low .result-header-icon {
+  background: var(--status-low-wash);
+  color: var(--status-low);
+}
+.result-header-low .result-header-level { color: var(--status-low); }
+
+.result-header-medium .result-header-icon {
+  background: var(--status-medium-wash);
+  color: var(--status-medium);
+}
+.result-header-medium .result-header-level { color: var(--status-medium); }
+
+.result-header-high .result-header-icon {
+  background: var(--status-high-wash);
+  color: var(--status-high);
+}
+.result-header-high .result-header-level { color: var(--status-high); }
+
+/* ============ Zone Analysis: 3-column stat grid ============ */
+
+.stat-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .stat-grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ============ Zone Analysis: key indicators ============ */
+
+.indicator-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+}
+
+.indicator-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.indicator-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--status-low);
+}
+
+/* ============ Zone Analysis: insight / recommendation text ============ */
+
+.insight-text {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.recommendation-panel {
+  border-left: 3px solid var(--accent);
+}
+
+.insight-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.insight-grid .panel {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1000px) {
+  .insight-grid { grid-template-columns: 1fr; }
+}
+
+/* ============ Production Risk: risk factor list (indicator-list variant) ============ */
+
+.indicator-list-risk .indicator-item svg {
+  color: var(--status-high);
+}
+
+/* ============ Production Risk: recommended corrective actions ============ */
+
+.action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+}
+
+.action-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.action-item-index {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-wash);
+  color: var(--accent-soft);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+/* ============ AI Insights: cross-module combined analysis ============ */
+
+.combined-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 1000px) {
+  .combined-grid { grid-template-columns: 1fr; }
+}
+
+.combined-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-panel-raised);
+}
+
+.combined-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.combined-card-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: var(--accent-wash);
+  color: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.combined-card-region {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--text-primary);
+}
+
+.combined-card-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.combined-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.combined-badge-low { color: var(--status-low); background: var(--status-low-wash); }
+.combined-badge-medium { color: var(--status-medium); background: var(--status-medium-wash); }
+.combined-badge-high { color: var(--status-high); background: var(--status-high-wash); }
+
+.combined-card-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ============ AI Insights: filter tabs ============ */
+
+.insight-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.insight-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-panel);
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  font-weight: 600;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.insight-tab:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.insight-tab-active {
+  background: var(--accent-wash);
+  border-color: var(--accent);
+  color: var(--accent-soft);
+}
+
+/* ============ AI Insights: unified finding cards ============ */
+
+.finding-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.finding-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-panel);
+}
+
+.finding-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.finding-card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.finding-card-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.finding-card-region {
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+}
+
+.finding-card-top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.finding-card-confidence {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.finding-card-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.finding-card-points {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.finding-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.finding-point-icon-low { flex-shrink: 0; margin-top: 1px; color: var(--status-low); }
+.finding-point-icon-high { flex-shrink: 0; margin-top: 1px; color: var(--status-high); }
+
+/* ============ Action Center: per-group header row ============ */
+/* Reuses finding-card-top / finding-card-title-group / finding-card-region
+   from AI Insights so a group header reads identically whether it's sitting
+   inside a .finding-card or, here, at the top of a plain .panel. */
+
+.action-group-header {
+  margin-bottom: 14px;
+}
+
+/* ============ Action Center: action-item-index as a toggle button ============ */
+/* action-item-index started as a plain numbered <span> (see Production Risk's
+   corrective-action list). Action Center turns it into a real checkbox: same
+   look at rest, swaps to a checkmark + green wash once marked done. */
+
+button.action-item-index {
+  border: none;
+  padding: 0;
+}
+
+.action-item-done {
+  opacity: 0.6;
+}
+
+.action-item-done .action-item-index {
+  background: var(--status-low-wash);
+  color: var(--status-low);
+}
+
+.action-item-done > span:last-child {
+  text-decoration: line-through;
+  color: var(--text-tertiary);
+}

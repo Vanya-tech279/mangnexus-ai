@@ -1,0 +1,20 @@
+{
+  "feature_order": [
+    "mineralReflectanceIndex",
+    "geologicalFormationMatch",
+    "historicalDrillingProximity",
+    "ironOxideCorrelation",
+    "terrainSlopeSuitability",
+    "vegetationStressIndex"
+  ],
+  "classes": [
+    "High",
+    "Low",
+    "Medium"
+  ],
+  "validation_accuracy": 0.8738,
+  "train_samples": 3200,
+  "test_samples": 800,
+  "model_type": "RandomForestClassifier",
+  "data_source": "synthetic_demo"
+}

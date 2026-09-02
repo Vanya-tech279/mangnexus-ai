@@ -1,0 +1,18 @@
+{
+  "feature_order": [
+    "avgMonthlyProduction",
+    "equipmentAvailability",
+    "equipmentDowntimeHours",
+    "forecastRainfallMm"
+  ],
+  "classes": [
+    "High",
+    "Low",
+    "Medium"
+  ],
+  "validation_accuracy": 0.8275,
+  "train_samples": 3200,
+  "test_samples": 800,
+  "model_type": "RandomForestClassifier",
+  "data_source": "synthetic_demo"
+}
